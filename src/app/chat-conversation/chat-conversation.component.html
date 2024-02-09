@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Chat Box UI Design</title>
+  </head>
+
+  <body>
+    <!-- Main container -->
+    <div class="container">
+
+      <!-- Chat inbox  -->
+      <div class="chat-page">
+        <div class="msg-inbox">
+          <div class="chats">
+            <!-- Message container -->
+            <div class="msg-page"  #myElementRif >
+              <!-- Incoming messages -->
+
+              <div *ngFor="let chat of conversations"  [class]="chat.type == 'In' ? 'received-chats' : 'outgoing-chats'">
+                <div [class]="chat.type == 'In' ? 'received-chats-img' : 'outgoing-chats-img'">
+                    <img [src]="chat.type !== 'In' ? '../../assets/image4.jpg' : '../../assets/img.jpg'" class="msgimg" />
+                </div>
+                <div [class]="chat.type == 'In' ? 'received-msg' : 'outgoing-msg'" >
+                  <div [class]="chat.type == 'In' ? 'received-msg-inbox' : 'outgoing-chats-msg'">
+                    <p [class]="chat.type == 'In' ? '' : 'multi-msg'">
+                       {{chat.comment}}
+                    </p>
+                    <span class="time">   {{chat.timeStamp}}</span>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+          </div>
+
+          <!-- msg-bottom section -->
+
+          <div class="msg-bottom">
+            <div class="input-group">
+              <input
+                type="text"  [(ngModel)]="text" name="name"
+                class="form-control"
+                placeholder="Write message..."
+                (keyup)="$event.keyCode == 13 ? addText() : null" 
+              />
+              <span class="input-group-text send-icon" (click)="addText()" >
+                <i class="pi pi-send"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
